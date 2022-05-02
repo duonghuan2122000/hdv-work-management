@@ -1,0 +1,12 @@
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Domain\bin\Debug\net5.0\HDV.Nhom2.Domain.deps.json
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Domain\bin\Debug\net5.0\HDV.Nhom2.Domain.dll
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Domain\bin\Debug\net5.0\ref\HDV.Nhom2.Domain.dll
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Domain\bin\Debug\net5.0\HDV.Nhom2.Domain.pdb
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Domain\obj\Debug\net5.0\HDV.Nhom2.Domain.csproj.AssemblyReference.cache
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Domain\obj\Debug\net5.0\HDV.Nhom2.Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Domain\obj\Debug\net5.0\HDV.Nhom2.Domain.AssemblyInfoInputs.cache
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Domain\obj\Debug\net5.0\HDV.Nhom2.Domain.AssemblyInfo.cs
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Domain\obj\Debug\net5.0\HDV.Nhom2.Domain.csproj.CoreCompileInputs.cache
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Domain\obj\Debug\net5.0\HDV.Nhom2.Domain.dll
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Domain\obj\Debug\net5.0\ref\HDV.Nhom2.Domain.dll
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Domain\obj\Debug\net5.0\HDV.Nhom2.Domain.pdb

@@ -34,6 +34,18 @@ namespace HDV.Nhom2.HttpApi.Controllers
             var createEmployeeRes = await _employeeService.CreateAsync(createEmployeeReq);
             return createEmployeeRes;
         }
+
+        /// <summary>
+        /// Xác thực nhân viên
+        /// </summary>
+        /// <param name="authEmployeeReq"></param>
+        /// <returns></returns>
+        [HttpPost("auth")]
+        public async Task<AuthEmployeeRes> AuthEmployee(AuthEmployeeReq authEmployeeReq)
+        {
+            var authEmployeeRes = await _employeeService.AuthEmployee(authEmployeeReq);
+            return authEmployeeRes;
+        }
         #endregion
     }
 }

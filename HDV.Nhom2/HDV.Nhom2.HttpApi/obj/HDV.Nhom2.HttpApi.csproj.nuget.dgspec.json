@@ -107,6 +107,9 @@
               "E:\\ptit\\huong-dich-vu\\Code\\nhom\\HDV.Nhom2\\HDV.Nhom2.Application.Contracts\\HDV.Nhom2.Application.Contracts.csproj": {
                 "projectPath": "E:\\ptit\\huong-dich-vu\\Code\\nhom\\HDV.Nhom2\\HDV.Nhom2.Application.Contracts\\HDV.Nhom2.Application.Contracts.csproj"
               },
+              "E:\\ptit\\huong-dich-vu\\Code\\nhom\\HDV.Nhom2\\HDV.Nhom2.Domain.Shared\\HDV.Nhom2.Domain.Shared.csproj": {
+                "projectPath": "E:\\ptit\\huong-dich-vu\\Code\\nhom\\HDV.Nhom2\\HDV.Nhom2.Domain.Shared\\HDV.Nhom2.Domain.Shared.csproj"
+              },
               "E:\\ptit\\huong-dich-vu\\Code\\nhom\\HDV.Nhom2\\HDV.Nhom2.Domain\\HDV.Nhom2.Domain.csproj": {
                 "projectPath": "E:\\ptit\\huong-dich-vu\\Code\\nhom\\HDV.Nhom2\\HDV.Nhom2.Domain\\HDV.Nhom2.Domain.csproj"
               }
@@ -131,6 +134,10 @@
               "target": "Package",
               "version": "[7.2.0, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.16, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
@@ -142,6 +149,10 @@
             "Serilog.Extensions.Logging.File": {
               "target": "Package",
               "version": "[2.0.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.17.0, )"
             }
           },
           "imports": [
@@ -375,6 +386,10 @@
               "target": "Package",
               "version": "[7.2.0, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.16, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.16, )"
@@ -398,6 +413,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.17.0, )"
             }
           },
           "imports": [

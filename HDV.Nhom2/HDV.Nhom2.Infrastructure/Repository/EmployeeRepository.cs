@@ -56,6 +56,14 @@ namespace HDV.Nhom2.Infrastructure
                 .FirstOrDefaultAsync();
             return employee;
         }
+
+        public async Task<Employee> GetAsync(Guid id)
+        {
+            var employee = await _dbContext.Employee.AsNoTracking()
+                .Where(e => e.Id == id)
+                .FirstOrDefaultAsync();
+            return employee;
+        }
         #endregion
     }
 }

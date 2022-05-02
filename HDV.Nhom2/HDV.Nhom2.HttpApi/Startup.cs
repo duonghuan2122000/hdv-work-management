@@ -1,4 +1,5 @@
 using Autofac;
+using HDV.Nhom2.Application.Contracts;
 using HDV.Nhom2.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +30,8 @@ namespace HDV.Nhom2.HttpApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<JwtSetting>(Configuration.GetSection("JwtSetting"));
+
             string connectionString = Configuration.GetConnectionString("Default");
             services.AddDbContext<Nhom2DbContext>(
                 options =>

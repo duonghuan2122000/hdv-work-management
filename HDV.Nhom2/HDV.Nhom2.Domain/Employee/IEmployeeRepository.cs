@@ -22,5 +22,7 @@ namespace HDV.Nhom2.Domain
         /// <param name="username"></param>
         /// <returns></returns>
         Task<Employee> GetAsync(string email, string username);
+
+        Task<Employee> GetAsync(Guid id);
     }
 }

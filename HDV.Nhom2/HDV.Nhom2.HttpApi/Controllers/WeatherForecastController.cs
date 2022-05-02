@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace HDV.Nhom2.HttpApi.Controllers
 {
+    [AuthRequired]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase

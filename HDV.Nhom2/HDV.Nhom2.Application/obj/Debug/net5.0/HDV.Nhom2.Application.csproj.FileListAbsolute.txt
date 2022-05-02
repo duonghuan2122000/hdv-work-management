@@ -15,3 +15,5 @@ E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Application\bin\Debug\net5.0
 E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Application\bin\Debug\net5.0\HDV.Nhom2.Application.Contracts.pdb
 E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Application\bin\Debug\net5.0\HDV.Nhom2.Domain.pdb
 E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Application\obj\Debug\net5.0\HDV.Nhom2.Application.csproj.CopyComplete
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Application\bin\Debug\net5.0\HDV.Nhom2.Domain.Shared.dll
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Application\bin\Debug\net5.0\HDV.Nhom2.Domain.Shared.pdb

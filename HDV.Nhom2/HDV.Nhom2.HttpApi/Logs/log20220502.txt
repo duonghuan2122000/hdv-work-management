@@ -30,3 +30,85 @@
    at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
    at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
    at HDV.Nhom2.HttpApi.Nhom2Middleware.Invoke(HttpContext context) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\Middleware\Nhom2Middleware.cs:line 26
+2022-05-02 18:02:12.634 +07:00 [ERR] Nhom2Middleware-HandleException-Exception: HDV.Nhom2.Domain.Shared.Nhom2Exception: Exception of type 'HDV.Nhom2.Domain.Shared.Nhom2Exception' was thrown.
+   at HDV.Nhom2.Application.EmployeeService.AuthEmployee(AuthEmployeeReq authEmployeeReq) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Application\Employee\EmployeeService.cs:line 76
+   at HDV.Nhom2.HttpApi.Controllers.EmployeeController.AuthEmployee(AuthEmployeeReq authEmployeeReq) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\Controllers\EmployeeController.cs:line 46
+   at lambda_method362(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at HDV.Nhom2.HttpApi.Nhom2Middleware.Invoke(HttpContext context) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\Middleware\Nhom2Middleware.cs:line 26
+2022-05-02 18:04:27.560 +07:00 [ERR] Nhom2Middleware-HandleException-Exception: HDV.Nhom2.Domain.Shared.Nhom2Exception: Exception of type 'HDV.Nhom2.Domain.Shared.Nhom2Exception' was thrown.
+   at HDV.Nhom2.Application.EmployeeService.AuthEmployee(AuthEmployeeReq authEmployeeReq) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Application\Employee\EmployeeService.cs:line 76
+   at HDV.Nhom2.HttpApi.Controllers.EmployeeController.AuthEmployee(AuthEmployeeReq authEmployeeReq) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\Controllers\EmployeeController.cs:line 46
+   at lambda_method362(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at HDV.Nhom2.HttpApi.Nhom2Middleware.Invoke(HttpContext context) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\Middleware\Nhom2Middleware.cs:line 26
+2022-05-02 18:04:35.016 +07:00 [ERR] Nhom2Middleware-HandleException-Exception: HDV.Nhom2.Domain.Shared.Nhom2Exception: Exception of type 'HDV.Nhom2.Domain.Shared.Nhom2Exception' was thrown.
+   at HDV.Nhom2.Application.EmployeeService.AuthEmployee(AuthEmployeeReq authEmployeeReq) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Application\Employee\EmployeeService.cs:line 81
+   at HDV.Nhom2.HttpApi.Controllers.EmployeeController.AuthEmployee(AuthEmployeeReq authEmployeeReq) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\Controllers\EmployeeController.cs:line 46
+   at lambda_method362(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at HDV.Nhom2.HttpApi.Nhom2Middleware.Invoke(HttpContext context) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\Middleware\Nhom2Middleware.cs:line 26
+2022-05-02 18:04:41.077 +07:00 [ERR] Nhom2Middleware-HandleException-Exception: HDV.Nhom2.Domain.Shared.Nhom2Exception: Exception of type 'HDV.Nhom2.Domain.Shared.Nhom2Exception' was thrown.
+   at HDV.Nhom2.Application.EmployeeService.AuthEmployee(AuthEmployeeReq authEmployeeReq) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Application\Employee\EmployeeService.cs:line 81
+   at HDV.Nhom2.HttpApi.Controllers.EmployeeController.AuthEmployee(AuthEmployeeReq authEmployeeReq) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\Controllers\EmployeeController.cs:line 46
+   at lambda_method362(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at HDV.Nhom2.HttpApi.Nhom2Middleware.Invoke(HttpContext context) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\Middleware\Nhom2Middleware.cs:line 26
+2022-05-02 18:04:46.530 +07:00 [ERR] Nhom2Middleware-HandleException-Exception: HDV.Nhom2.Domain.Shared.Nhom2Exception: Exception of type 'HDV.Nhom2.Domain.Shared.Nhom2Exception' was thrown.
+   at HDV.Nhom2.Application.EmployeeService.AuthEmployee(AuthEmployeeReq authEmployeeReq) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.Application\Employee\EmployeeService.cs:line 81
+   at HDV.Nhom2.HttpApi.Controllers.EmployeeController.AuthEmployee(AuthEmployeeReq authEmployeeReq) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\Controllers\EmployeeController.cs:line 46
+   at lambda_method362(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at HDV.Nhom2.HttpApi.Nhom2Middleware.Invoke(HttpContext context) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\Middleware\Nhom2Middleware.cs:line 26
+2022-05-02 18:34:14.484 +07:00 [ERR] Nhom2Middleware-HandleException-Exception: HDV.Nhom2.Domain.Shared.Nhom2Exception: Exception of type 'HDV.Nhom2.Domain.Shared.Nhom2Exception' was thrown.
+   at HDV.Nhom2.HttpApi.AuthRequiredAttribute.OnAuthorizationAsync(AuthorizationFilterContext context) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\AuthAttribute\AuthRequiredAttribute.cs:line 25
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at HDV.Nhom2.HttpApi.Nhom2Middleware.Invoke(HttpContext context) in E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\Middleware\Nhom2Middleware.cs:line 26

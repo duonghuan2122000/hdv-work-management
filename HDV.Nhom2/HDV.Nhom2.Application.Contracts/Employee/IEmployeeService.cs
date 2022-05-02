@@ -15,5 +15,12 @@ namespace HDV.Nhom2.Application.Contracts
         /// <param name="createEmployeeReq"></param>
         /// <returns></returns>
         Task<CreateEmployeeRes> CreateAsync(CreateEmployeeReq createEmployeeReq);
+
+        /// <summary>
+        /// Xác thực nhân viên
+        /// </summary>
+        /// <param name="authEmployeeReq"></param>
+        /// <returns></returns>
+        Task<AuthEmployeeRes> AuthEmployee(AuthEmployeeReq authEmployeeReq);
     }
 }

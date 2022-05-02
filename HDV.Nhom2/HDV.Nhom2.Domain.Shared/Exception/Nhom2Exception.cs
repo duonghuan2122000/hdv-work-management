@@ -14,7 +14,7 @@ namespace HDV.Nhom2.Domain.Shared
 
         public HttpStatusCode StatusCode { get; set; }
 
-        public Nhom2Exception(string errorCode, string errorMessage, HttpStatusCode statusCode)
+        public Nhom2Exception(string errorCode, string errorMessage, HttpStatusCode statusCode = HttpStatusCode.BadRequest)
         {
             ErrorCode = errorCode;
             ErrorMessage = errorMessage;

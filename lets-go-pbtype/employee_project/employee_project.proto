@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package  employee_project;
+
+option go_package = "github.com/dinhtp/lets-go-pbtype/employee_project";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+// Enable custom Marshal method.
+option (gogoproto.marshaler_all) = true;
+// Enable custom Unmarshal method.
+option (gogoproto.unmarshaler_all) = true;
+// Enable custom Size method (Required by Marshal and Unmarshal).
+option (gogoproto.sizer_all) = true;
+// Enable registration with golang/protobuf for the grpc-gateway.
+option (gogoproto.goproto_registration) = true;
+// Enable generation of XXX_MessageName methods for grpc-go/status.
+option (gogoproto.messagename_all) = true;
+
+message Employee_Project{
+    string id = 1;
+    string employee_id = 2;
+    string project_id = 3;
+
+    string created_at = 20;
+    string updated_at = 21;
+}
+
+
+
+service EmployeeService {
+    rpc Create(Employee_Project) returns (Employee_Project) {
+        option (google.api.http) = {
+            post: "/go/project/{project_id}/employee/{employee_id}"
+            body: "*"
+        };
+    };
+
+    rpc Delete(Employee_Project) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/go/project/{project_id}/employee/{employee_id}"
+        };
+    };
+}

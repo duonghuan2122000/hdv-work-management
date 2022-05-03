@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package company;
+
+option go_package = "github.com/dinhtp/lets-go-pbtype/company";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+
+// Enable custom Marshal method.
+option (gogoproto.marshaler_all) = true;
+// Enable custom Unmarshal method.
+option (gogoproto.unmarshaler_all) = true;
+// Enable custom Size method (Required by Marshal and Unmarshal).
+option (gogoproto.sizer_all) = true;
+// Enable registration with golang/protobuf for the grpc-gateway.
+option (gogoproto.goproto_registration) = true;
+// Enable generation of XXX_MessageName methods for grpc-go/status.
+option (gogoproto.messagename_all) = true;
+
+message Company {
+    string id = 1;
+    string name = 2;
+    string phone = 3;
+    string email = 4;
+    string address = 5;
+    string tax_number = 6;
+    uint32 total_employee = 7;
+    uint32 total_project = 8;
+
+    string created_at = 20;
+    string updated_at = 21;
+}
+
+message OneCompanyRequest {
+    string id = 1;
+}
+
+message ListCompanyRequest {
+    uint32 page = 3;
+    uint32 limit = 4;
+    string created_at_min = 5;
+    string created_at_max = 6;
+    string search_field = 7;
+    string search_value = 8;
+}
+
+message ListCompanyResponse {
+    repeated Company items = 1;
+    uint32 max_page = 2;
+    uint32 total_count = 3;
+    uint32 page = 4;
+    uint32 limit = 5;
+    string search_field = 6;
+    string search_value = 7;
+}
+
+service CompanyService {
+    rpc Create(Company) returns (Company) {
+        option (google.api.http) = {
+            post: "/go/company"
+            body: "*"
+        };
+    };
+
+    rpc Update(Company) returns (Company) {
+        option (google.api.http) = {
+            put: "/go/company/{id}"
+            body: "*"
+        };
+    };
+    rpc Get(OneCompanyRequest) returns (Company) {
+        option (google.api.http) = {
+            get: "/go/company/{id}"
+        };
+    };
+    rpc List(ListCompanyRequest) returns (ListCompanyResponse) {
+        option (google.api.http) = {
+            get: "/go/companies"
+        };
+    };
+    rpc Delete(OneCompanyRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/go/company/{id}"
+        };
+    };
+}

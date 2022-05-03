@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package  employee;
+
+option go_package = "github.com/dinhtp/lets-go-pbtype/employee";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+// Enable custom Marshal method.
+option (gogoproto.marshaler_all) = true;
+// Enable custom Unmarshal method.
+option (gogoproto.unmarshaler_all) = true;
+// Enable custom Size method (Required by Marshal and Unmarshal).
+option (gogoproto.sizer_all) = true;
+// Enable registration with golang/protobuf for the grpc-gateway.
+option (gogoproto.goproto_registration) = true;
+// Enable generation of XXX_MessageName methods for grpc-go/status.
+option (gogoproto.messagename_all) = true;
+
+message Employee{
+    string id = 1;
+    string company_id = 2;
+    string name = 3;
+    string email = 4;
+    string dob = 5;
+    string gender = 6;
+    string role = 7;
+
+    string created_at = 20;
+    string updated_at = 21;
+}
+
+message OneEmployeeRequest{
+    string id = 1;
+}
+
+message ListEmployeeRequest{
+    uint32 page = 1;
+    uint32 limit = 2;
+    string created_at_min = 3;
+    string created_at_max = 4;
+    string search_field = 5;
+    string search_value = 6;
+    string company_id = 7;
+}
+
+message ListEmplyeeResponse{
+    repeated Employee items = 1;
+    uint32 max_page = 2;
+    uint32 total_count = 3;
+    uint32 page = 4;
+    uint32 limit = 5;
+}
+
+service EmployeeService {
+    rpc Create(Employee) returns (Employee) {
+        option (google.api.http) = {
+            post: "/go/company/{company_id}/employee"
+            body: "*"
+        };
+    };
+
+    rpc Update(Employee) returns (Employee) {
+        option (google.api.http) = {
+            put: "/go/employee/{id}"
+            body: "*"
+        };
+    };
+    rpc Get(OneEmployeeRequest) returns (Employee) {
+        option (google.api.http) = {
+            get: "/go/employee/{id}"
+        };
+    };
+    rpc List(ListEmployeeRequest) returns (ListEmplyeeResponse) {
+        option (google.api.http) = {
+            get: "/go/employees"
+        };
+    };
+    rpc Delete(OneEmployeeRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/go/employee/{id}"
+        };
+    };
+}

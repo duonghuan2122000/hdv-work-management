@@ -20,4 +20,8 @@
     <ProjectReference Include="..\HDV.Nhom2.Domain\HDV.Nhom2.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Project\" />
+  </ItemGroup>
+
 </Project>

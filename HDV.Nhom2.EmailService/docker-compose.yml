@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  emailservice:
+    image: 01686120288/emailservice:1.0.0
+    build:
+      context: .
+      dockerfile: HDV.Nhom2.EmailService/Dockerfile
+    volumes:
+        - "./appsettings.json:/app/appsettings.json"

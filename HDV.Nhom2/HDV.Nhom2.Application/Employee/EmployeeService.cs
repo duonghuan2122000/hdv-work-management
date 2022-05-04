@@ -48,7 +48,8 @@ namespace HDV.Nhom2.Application
                 LastName = createEmployeeReq.LastName,
                 Email = createEmployeeReq.Email,
                 Username = createEmployeeReq.Username,
-                PasswordSalt = Guid.NewGuid().ToString()
+                PasswordSalt = Guid.NewGuid().ToString(),
+                Role = (int)createEmployeeReq.Role
             };
 
             employee.PasswordHash = _commonUtility.Md5(createEmployeeReq.Password + employee.PasswordSalt);
@@ -60,7 +61,8 @@ namespace HDV.Nhom2.Application
                 FirstName = newEmployee.FirstName,
                 LastName = newEmployee.LastName,
                 Email = newEmployee.Email,
-                Username = newEmployee.Username
+                Username = newEmployee.Username,
+                Role = newEmployee.Role
             };
         }
 
@@ -87,6 +89,7 @@ namespace HDV.Nhom2.Application
             var claims = new Claim[]
             {
                 new Claim("EmployeeId", employee.Id.ToString()),
+                new Claim("EmployeeRole", employee.Role.ToString()),
                 new Claim("ExpireDate", expireDate.ToString("yyyyMMddHHmmss")),
                 new Claim("Scope", "Nhom2")
             };

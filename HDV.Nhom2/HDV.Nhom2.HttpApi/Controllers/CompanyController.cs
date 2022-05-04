@@ -16,9 +16,12 @@ namespace HDV.Nhom2.HttpApi.Controllers
 
         private readonly ICompanyService _companyService;
 
-        public CompanyController(ICompanyService companyService)
+        private readonly IProjectService _projectService;
+
+        public CompanyController(ICompanyService companyService, IProjectService projectService)
         {
             _companyService = companyService;
+            _projectService = projectService;
         }
         #endregion
 
@@ -35,6 +38,12 @@ namespace HDV.Nhom2.HttpApi.Controllers
             return createCompanyRes;
         }
 
+        [HttpPost("{companyCode}/projects")]
+        public async Task<CreateProjectRes> CreateProject(CreateProjectReq createProjectReq, string companyCode)
+        {
+            var createProjectRes = await _projectService.CreateAsync(createProjectReq, companyCode);
+            return createProjectRes;
+        }
         #endregion
     }
 }

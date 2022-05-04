@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[7.2.0, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.2.0, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
@@ -103,7 +107,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "E:\\ptit\\huong-dich-vu\\Code\\nhom\\HDV.Nhom2\\HDV.Nhom2.Domain.Shared\\HDV.Nhom2.Domain.Shared.csproj": {
+                "projectPath": "E:\\ptit\\huong-dich-vu\\Code\\nhom\\HDV.Nhom2\\HDV.Nhom2.Domain.Shared\\HDV.Nhom2.Domain.Shared.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -123,6 +131,10 @@
             "Autofac.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[7.2.0, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.2.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -206,6 +218,10 @@
             "Autofac.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[7.2.0, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.2.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",

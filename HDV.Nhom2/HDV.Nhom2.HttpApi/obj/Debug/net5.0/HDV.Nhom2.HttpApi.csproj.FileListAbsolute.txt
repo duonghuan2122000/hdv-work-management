@@ -72,3 +72,6 @@ E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\bin\Debug\net5.0\Mic
 E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\bin\Debug\net5.0\MailKit.dll
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\bin\Debug\net5.0\MimeKit.dll
+E:\ptit\huong-dich-vu\Code\nhom\HDV.Nhom2\HDV.Nhom2.HttpApi\bin\Debug\net5.0\BouncyCastle.Crypto.dll

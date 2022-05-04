@@ -15,5 +15,7 @@ namespace HDV.Nhom2.Application.Contracts
         public string Email { get; set; }
 
         public string Username { get; set; }
+
+        public int Role { get; set; }
     }
 }

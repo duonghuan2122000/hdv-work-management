@@ -63,6 +63,8 @@ namespace HDV.Nhom2.Infrastructure
 
                 entity.Property(e => e.PasswordSalt).HasMaxLength(100);
 
+                entity.Property(e => e.Role).HasColumnType("int(11)");
+
                 entity.Property(e => e.UpdatedDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Username).HasMaxLength(100);
@@ -79,6 +81,8 @@ namespace HDV.Nhom2.Infrastructure
                 entity.Property(e => e.Code).HasMaxLength(20);
 
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Description).HasColumnType("text");
 
                 entity.Property(e => e.Name).HasMaxLength(1000);
 

@@ -30,7 +30,8 @@ namespace HDV.Nhom2.HttpApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<JwtSetting>(Configuration.GetSection("JwtSetting"));
+            services.Configure<JwtSetting>(Configuration.GetSection("JwtSettings"));
+            services.Configure<MailSetting>(Configuration.GetSection("MailSettings"));
 
             string connectionString = Configuration.GetConnectionString("Default");
             services.AddDbContext<Nhom2DbContext>(

@@ -17,5 +17,9 @@ namespace HDV.Nhom2.Domain
         public string Content { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
+        public Guid ProjectId { get; set; }
+        public Guid EmployeeId { get; set; }
+
+        public Guid CompanyId { get; set; }
     }
 }

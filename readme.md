@@ -1,24 +1,27 @@
 # Dịch vụ quản lý công việc
 Dịch vụ quản lý công việc giúp công ty có thể dễ dang quản lý các dự án và công việc của từng nhân viên trong công ty.
 Đề tài bài tập của nhóm tập trung vào thông báo cho nhân viên và người dùng có đăng ký nhận thông báo của nhân viên đó
+## Link Github: 
+https://github.com/duonghuan2122000/hdv-work-management
 
 ## Các chức năng chính:
 1. Đăng ký nhận thông báo qua Email
 2. Thông báo qua Email khi có task mới được gán cho nhân viên
-3. Thông báo qua Email khi có task của nhân viên chưa hoàn thành và sắp hết hạn
+3. Thông báo qua Email khi có task của nhân viên sắp hết hạn
 ## Công nghệ sử dụng:
 - Kiến trúc hướng dịch vụ: Restful Service
-- Ngôn ngữ sử dụng: .NET 5, 6 và GO
+- Ngôn ngữ sử dụng: .NET 5, 6 và Go Lang
 - Database: Mariadb 10
 - Server: Ubuntu 20.04
-- Enviromonent: Docker
+- Enviromonent: Docker, Nginx
+- Công nghệ khác: GRPC (Framework giao tiếp giữa các service)
 ## Người đóng góp
-1. Dương Bằng Huân
+1. Dương Bằng Huân: B18DCCN251
 - Quản lý code, 
 - Kiểm duyệt và deploy các phiên bản code mới
-2. Nguyễn Quang Minh
+2. Nguyễn Quang Minh: B18DCCN405
 - Xây dựng core quản lý thông tin công ty, dự án
-3. Nguyễn Thị Hồng
+3. Nguyễn Thị Hồng: B18DCCN250
 - Phân tích nghiệp vụ cho phần mềm
 ## Lịch sử phát triển
 **02/04/2022**

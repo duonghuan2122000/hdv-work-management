@@ -1,29 +1,27 @@
-﻿# Phần mềm quản lý công việc
-Phần mềm quản lý công việc giúp công ty có thể dễ dang quản lý các dự án và công việc của từng nhân viên trong công ty.
-Đề tài bài tập của nhóm chủ yếu hướng vào việc tra cứu, tạo mới và cập nhật công việc trong dự án của công ty. 
+# Dịch vụ quản lý công việc
+Dịch vụ quản lý công việc giúp công ty có thể dễ dang quản lý các dự án và công việc của từng nhân viên trong công ty.
+Đề tài bài tập của nhóm tập trung vào thông báo cho nhân viên và người dùng có đăng ký nhận thông báo của nhân viên đó
+## Link Github: 
+https://github.com/duonghuan2122000/hdv-work-management
 
 ## Các chức năng chính:
-1. Quản lý:
-- Tra cứu danh sách công việc của nhân viên trong công ty (tra cứu bằng mã nhân viên) - áp dụng cho quản lý trong công ty
-- Tạo mới công việc và gắn cho nhân viên cụ thể
-2. Nhân viên:
-- Tra cứu thông tin công việc (tên, nội dung, ...)
-- Cập nhật trạng thái, tiến độ công việc
-3. Thông báo:
-- Thông báo email cho nhân viên khi có công việc mới được gán cho bản thân
+1. Đăng ký nhận thông báo qua Email
+2. Thông báo qua Email khi có task mới được gán cho nhân viên
+3. Thông báo qua Email khi có task của nhân viên sắp hết hạn
 ## Công nghệ sử dụng:
 - Kiến trúc hướng dịch vụ: Restful Service
-- Ngôn ngữ sử dụng: .NET 5
-- Database: Mariadb 11
+- Ngôn ngữ sử dụng: .NET 5, 6 và Go Lang
+- Database: Mariadb 10
 - Server: Ubuntu 20.04
-- Enviromonent: Docker
+- Enviromonent: Docker, Nginx
+- Công nghệ khác: GRPC (Framework giao tiếp giữa các service)
 ## Người đóng góp
-1. Dương Bằng Huân
+1. Dương Bằng Huân: B18DCCN251
 - Quản lý code, 
 - Kiểm duyệt và deploy các phiên bản code mới
-2. Nguyễn Quang Minh
+2. Nguyễn Quang Minh: B18DCCN405
 - Xây dựng core quản lý thông tin công ty, dự án
-3. Nguyễn Thị Hồng
+3. Nguyễn Thị Hồng: B18DCCN250
 - Phân tích nghiệp vụ cho phần mềm
 ## Lịch sử phát triển
 **02/04/2022**
@@ -42,5 +40,8 @@ Phần mềm quản lý công việc giúp công ty có thể dễ dang quản l
 
 **02/05/2022**
 - Thực hiện rà soát lại code của dự án
+
+**04/05/2022**
+- Ghép các service lại và họp lại thống nhất, hoàn thiện báo cáo
 
 

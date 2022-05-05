@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package  task;
+
+option go_package = "github.com/dinhtp/lets-go-pbtype/task";
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+import "google/protobuf/empty.proto";
+import "google/api/annotations.proto";
+
+// Enable custom Marshal method.
+option (gogoproto.marshaler_all) = true;
+// Enable custom Unmarshal method.
+option (gogoproto.unmarshaler_all) = true;
+// Enable custom Size method (Required by Marshal and Unmarshal).
+option (gogoproto.sizer_all) = true;
+// Enable registration with golang/protobuf for the grpc-gateway.
+option (gogoproto.goproto_registration) = true;
+// Enable generation of XXX_MessageName methods for grpc-go/status.
+option (gogoproto.messagename_all) = true;
+
+message Task{
+    string id = 1;
+    string project_id = 2;
+    string name = 3;
+    string status = 4;
+    string description = 5;
+    string start_date = 6;
+    string end_date = 7
+    ;
+    string created_at = 20;
+    string updated_at = 21;
+}
+
+message OneTaskRequest{
+    string id = 1;
+}
+
+message ListTaskRequest{
+    uint32 page = 1;
+    uint32 limit = 2;
+    string created_at_min = 3;
+    string created_at_max = 4;
+    string search_field = 5;
+    string search_value = 6;
+    string project_id = 7;
+}
+
+message ListTaskResponse{
+    repeated Task items = 1;
+    uint32 max_page = 2;
+    uint32 total_count = 3;
+    uint32 page = 4;
+    uint32 limit = 5;
+}
+
+service TaskService {
+    rpc Create(Task) returns (Task) {
+        option (google.api.http) = {
+            post: "/go/project/{project_id}/task"
+            body: "*"
+        };
+    };
+
+    rpc Update(Task) returns (Task) {
+        option (google.api.http) = {
+            put: "/go/task/{id}"
+            body: "*"
+        };
+    };
+    rpc Get(OneTaskRequest) returns (Task) {
+        option (google.api.http) = {
+            get: "/go/task/{id}"
+        };
+    };
+    rpc List(ListTaskRequest) returns (ListTaskResponse) {
+        option (google.api.http) = {
+            get: "/go/tasks"
+        };
+    };
+    rpc Delete(OneTaskRequest) returns (google.protobuf.Empty) {
+        option (google.api.http) = {
+            delete: "/go/task/{id}"
+        };
+    };
+}

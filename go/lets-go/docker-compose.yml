@@ -1,0 +1,118 @@
+version: '3.5'
+
+services:
+  # Functional services for company service
+  go-company-rest:
+    image: localhost:5000/go-company-service:latest
+    restart: always
+    command: go-company-service serve rest
+    environment:
+      - ADDRESS=go-company-rest:1400
+      - BACKEND=go-company-grpc:1401
+    ports:
+      - '1400:9090'
+    depends_on:
+      - "go-company-grpc"
+    hostname: go-company-rest
+    container_name: go-company-rest
+    networks:
+      - go
+
+  go-company-grpc:
+    image: localhost:5000/go-company-service:latest
+    restart: always
+    command: go-company-service serve grpc
+    environment:
+      - BACKEND=go-company-grpc:1401
+      - MYSQLDSN=root:root@tcp(${LAN_IP}:3306)/go?charset=utf8mb4&parseTime=True&loc=Local
+    ports:
+      - '1401:9090'
+    depends_on:
+      - "mysql"
+    hostname: go-company-grpc
+    container_name: go-company-grpc
+    networks:
+      - go
+
+  # Functional services for project service
+  go-project-rest:
+    image: localhost:5000/go-project-service:latest
+    restart: always
+    command: go-project-service serve rest
+    environment:
+      - ADDRESS=go-project-rest:1408
+      - BACKEND=go-project-grpc:1409
+    ports:
+      - '1408:9090'
+    depends_on:
+      - "go-project-grpc"
+    hostname: go-project-rest
+    container_name: go-project-rest
+    networks:
+      - go
+
+  go-project-grpc:
+    image: localhost:5000/go-project-service:latest
+    restart: always
+    command: go-project-service serve grpc
+    environment:
+      - BACKEND=go-project-grpc:1409
+      - MYSQLDSN=root:root@tcp(${LAN_IP}:3306)/go?charset=utf8mb4&parseTime=True&loc=Local
+    ports:
+      - '1409:9090'
+    depends_on:
+      - "mysql"
+    hostname: go-project-grpc
+    container_name: go-project-grpc
+    networks:
+      - go
+
+  # Infrastructure services
+  mysql:
+    image: mysql:latest
+    restart: always
+    cap_add:
+      - ALL  # CAP_SYS_NICE
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=go
+      - MYSQL_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - '3306:3306'
+    hostname: mysql
+    container_name: mysql
+    networks:
+      - go
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - '8080:80'
+    networks:
+      - go
+
+  nginx:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - '80:80'
+      - '443:443'
+    expose:
+      - '80'
+      - '443'
+    hostname: nginx
+    container_name: nginx
+    networks:
+      - go
+
+networks:
+  go:

@@ -1,0 +1,309 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "employee/employee.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/go/company/{company_id}/employee": {
+      "post": {
+        "operationId": "EmployeeService_Create",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/employeeEmployee"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "company_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/employeeEmployee"
+            }
+          }
+        ],
+        "tags": [
+          "EmployeeService"
+        ]
+      }
+    },
+    "/go/employee/{id}": {
+      "get": {
+        "operationId": "EmployeeService_Get",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/employeeEmployee"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EmployeeService"
+        ]
+      },
+      "delete": {
+        "operationId": "EmployeeService_Delete",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EmployeeService"
+        ]
+      },
+      "put": {
+        "operationId": "EmployeeService_Update",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/employeeEmployee"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/employeeEmployee"
+            }
+          }
+        ],
+        "tags": [
+          "EmployeeService"
+        ]
+      }
+    },
+    "/go/employees": {
+      "get": {
+        "operationId": "EmployeeService_List",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/employeeListEmplyeeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "created_at_min",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "created_at_max",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "search_field",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "search_value",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "company_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "EmployeeService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "employeeEmployee": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "company_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "dob": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "employeeListEmplyeeResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/employeeEmployee"
+          }
+        },
+        "max_page": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "total_count": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Get private IP address
+PRIVATE_IP=$(ip route get 8.8.8.8 | sed -n '/src/{s/.*src *\([^ ]*\).*/\1/p;q}')
+
+if [ -f ".env" ];
+then
+    rm .env
+fi
+
+git checkout .env.dist
+sed -i "s/private_ip/${PRIVATE_IP}/g" .env.dist
+cp .env.dist .env
+git checkout .env.dist

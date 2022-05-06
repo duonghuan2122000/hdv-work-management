@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  hdv_btl_auth:
+    image: 01686120288/hdv_nhom2_auth:1.0.2
+    build:
+      context: .
+      dockerfile: HDV.BTL.Auth/Dockerfile
+    ports:
+        - "5014:80"

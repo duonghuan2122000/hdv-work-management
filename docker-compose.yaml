@@ -1,0 +1,99 @@
+version: "3.5"
+
+services:
+  nginx:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "6000:80"
+    expose:
+      - "80"
+    hostname: nginx
+    container_name: nginx
+    networks:
+      - hdv
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 128M
+  
+  go-company-rest:
+    image:  n3kizz/go-company-service:latest
+    restart: always
+    command: go-company-service serve rest
+    environment:
+      - ADDRESS=go-company-rest:1400
+      - BACKEND=go-company-grpc:1401
+    ports:
+      - '1400:9090'
+    depends_on:
+      - "go-company-grpc"
+    hostname: go-company-rest
+    container_name: go-company-rest
+    networks:
+      - hdv
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 128M
+  
+  go-company-grpc:
+    image:  n3kizz/go-company-service:latest
+    restart: always
+    command: go-company-service serve grpc
+    environment:
+      - BACKEND=go-company-grpc:1401
+      - MYSQLDSN=root:123456@tcp(host.docker.internal:3306)/hdv.nhom2.go?charset=utf8mb4&parseTime=True&loc=Local
+    ports:
+      - '1401:9090'
+    hostname: go-company-grpc
+    container_name: go-company-grpc
+    networks:
+      - hdv
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 128M
+
+  go-project-rest:
+    image:  n3kizz/go-project-service:latest
+    restart: always
+    command: go-project-service serve rest
+    environment:
+      - ADDRESS=go-project-rest:1408
+      - BACKEND=go-project-grpc:1409
+    ports:
+      - '1408:9090'
+    depends_on:
+      - "go-project-grpc"
+    hostname: go-project-rest
+    container_name: go-project-rest
+    networks:
+      - hdv
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 128M
+
+  go-project-grpc:
+    image:  n3kizz/go-project-service:latest
+    restart: always
+    command: go-project-service serve grpc
+    environment:
+      - BACKEND=go-project-grpc:1409
+      - MYSQLDSN=root:123456@tcp(host.docker.internal:3306)/hdv.nhom2.go?charset=utf8mb4&parseTime=True&loc=Local
+    ports:
+      - '1409:9090'
+    hostname: go-project-grpc
+    container_name: go-project-grpc
+    networks:
+      - hdv
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: 128M
+
+networks:
+  hdv:

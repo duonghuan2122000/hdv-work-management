@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>dotnet-HDV.Nhom2.EmailWorker-0E67E44B-DD01-494B-8F87-D2BB0FF11A66</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="1.8.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\HDV.Nhom2.Infrastructure.Contracts\HDV.Nhom2.Infrastructure.Contracts.csproj" />
+    <ProjectReference Include="..\..\HDV.Nhom2.Infrastructure\HDV.Nhom2.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

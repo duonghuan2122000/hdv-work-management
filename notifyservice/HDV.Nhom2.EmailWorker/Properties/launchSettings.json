@@ -1,0 +1,11 @@
+﻿{
+  "profiles": {
+    "HDV.Nhom2.EmailWorker": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

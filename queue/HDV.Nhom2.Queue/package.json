@@ -1,0 +1,16 @@
+{
+  "name": "hdv.nhom2.queue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.9.1",
+    "kafkajs": "^2.0.1"
+  }
+}

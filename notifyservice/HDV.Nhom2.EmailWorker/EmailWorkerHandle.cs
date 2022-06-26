@@ -18,8 +18,8 @@ namespace HDV.Nhom2.EmailWorker
     /// CreatedBy: dbhuan 11/06/2022
     public class EmailWorkerHandle : BackgroundService
     {
-        private readonly IKafkaConsumer<Null, string> _consumer;
-        public EmailWorkerHandle(IKafkaConsumer<Null, string> consumer)
+        private readonly IKafkaConsumer<Null, MailContent> _consumer;
+        public EmailWorkerHandle(IKafkaConsumer<Null, MailContent> consumer)
         {
             _consumer = consumer;
         }

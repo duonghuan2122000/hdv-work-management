@@ -17,5 +17,11 @@ namespace HDV.Nhom2.Gateway.BL
         /// </summary>
         /// CreatedBy: dbhuan 19/06/2022
         Task<CompanyDto> GetById(string id);
+
+        /// <summary>
+        /// Lấy tất cả danh sách công ty
+        /// </summary>
+        /// CreatedBy: dbhuan 25/06/2022
+        Task<List<CompanyDto>> GetListAsync();
     }
 }

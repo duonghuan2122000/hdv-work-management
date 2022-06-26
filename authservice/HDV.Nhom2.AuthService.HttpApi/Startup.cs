@@ -1,3 +1,4 @@
+using HDV.Nhom2.AuthService.BL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,11 +28,18 @@ namespace HDV.Nhom2.AuthService.HttpApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
+                    options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+                });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HDV.Nhom2.AuthService.HttpApi", Version = "v1" });
             });
+
+            services.Configure<JwtSetting>(Configuration.GetSection("JwtSetting"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -19,23 +19,27 @@ namespace HDV.Nhom2.Gateway.BL
 
         private readonly IOptions<AuthServiceOption> _authServiceOptions;
 
-        private readonly IKafkaProducer<Null, string> _producer;
+        private readonly IKafkaProducer<Null, EmailContentDto> _producer;
 
         private readonly ICompanyService _companyService;
 
         private readonly IOptions<CompanyServiceOption> _companyServiceOptions;
 
+        private readonly IOptions<ProjectServiceOption> _projectServiceOptions;
+
         public EmployeeService(ICallService callService, 
             IOptions<AuthServiceOption> authServiceOptions,
-            IKafkaProducer<Null, string> producer,
+            IKafkaProducer<Null, EmailContentDto> producer,
             ICompanyService companyService,
-            IOptions<CompanyServiceOption> companyServiceOptions)
+            IOptions<CompanyServiceOption> companyServiceOptions,
+            IOptions<ProjectServiceOption> projectServiceOptions)
         {
             _callService = callService;
             _authServiceOptions = authServiceOptions;
             _producer = producer;
             _companyService = companyService;
             _companyServiceOptions = companyServiceOptions;
+            _projectServiceOptions = projectServiceOptions;
         }
 
         /// <summary>
@@ -96,14 +100,14 @@ namespace HDV.Nhom2.Gateway.BL
             mailWhenRegisterEmployeeSuccess = mailWhenRegisterEmployeeSuccess.Replace("##EMPLOYEE_NAME##", $"{createEmployeeResDto.LastName} {createEmployeeResDto.FirstName}")
                 .Replace("##COMPANY_NAME##", companyDto.Name);
 
-            var emailCreateEmployeeDto = new EmailCreateEmployeeDto
+            var emailContentDto = new EmailContentDto
             {
                 Email = createEmployeeResDto.Email,
                 Subject = "[HDV.Nhom2] Đăng ký thành công nhân viên",
                 Body = mailWhenRegisterEmployeeSuccess
             };
 
-            _ = AddSendMailCreateUserToQueue(emailCreateEmployeeDto);
+            _ = AddSendMailToQueue(emailContentDto);
             #endregion
 
             return createEmployeeResDto;
@@ -152,7 +156,7 @@ namespace HDV.Nhom2.Gateway.BL
                 Log.Logger.Debug("EmployeeService-CreateEmployeeGoService: url={createEmployeeGoServiceUrl}, Res={@createEmployeeGoServiceResponse}", createEmployeeGoServiceUrl, createEmployeeGoServiceResponse);
                 if(createEmployeeGoServiceResponse.StatusCode != System.Net.HttpStatusCode.OK)
                 {
-                    throw new Nhom2Exception("E3000", "Lỗi hệ thống");
+                    throw new Nhom2Exception("E3000", "Lỗi hệ thống", System.Net.HttpStatusCode.InternalServerError);
                 }
             }
             catch(Nhom2Exception ex)
@@ -163,7 +167,7 @@ namespace HDV.Nhom2.Gateway.BL
             catch (Exception ex)
             {
                 Log.Logger.Error("EmployeeService-CreateEmployeeGoService-Exception: {ex}", ex);
-                throw new Nhom2Exception("E3000", "Lỗi hệ thống");
+                throw new Nhom2Exception("E3000", "Lỗi hệ thống", System.Net.HttpStatusCode.InternalServerError);
             }
         }
 
@@ -171,11 +175,160 @@ namespace HDV.Nhom2.Gateway.BL
         /// Thêm một msg gửi mail tạo nhân viên vào queue
         /// </summary>
         /// <returns></returns>
-        private async Task AddSendMailCreateUserToQueue(EmailCreateEmployeeDto emailCreateEmployeeDto)
+        private async Task AddSendMailToQueue(EmailContentDto emailContentDto)
         {
-            var emailCreateEmployeeDtoStr = JsonConvert.SerializeObject(emailCreateEmployeeDto);
-            Log.Logger.Debug("EmployeeService-AddSendMailCreateUserToQueue: {emailCreateEmployeeDtoStr}", emailCreateEmployeeDtoStr);
-            await _producer.ProduceAsync("HDV_EmailService", null, emailCreateEmployeeDtoStr);
+            var emailContentDtoStr = JsonConvert.SerializeObject(emailContentDto);
+            Log.Logger.Debug("EmployeeService-AddSendMailCreateUserToQueue: {emailContentDtoStr}", emailContentDtoStr);
+            await _producer.ProduceAsync("HDV_EmailService", null, emailContentDto);
+        }
+
+        /// <summary>
+        /// Tạo và giao task cho nhân viên
+        /// </summary>
+        /// CreatedBy: dbhuan 25/06/2022
+        /// <param name="createAndAssignTaskForEmployeeReqDto"></param>
+        /// <returns></returns>
+        public async Task<bool> CreateAndAssignTaskForEmployee(CreateAndAssignTaskForEmployeeReqDto createAndAssignTaskForEmployeeReqDto)
+        {
+            var employee = await GetEmployee(createAndAssignTaskForEmployeeReqDto.EmployeeId);
+
+            var createTaskGoReqDto = new CreateTaskGoReqDto
+            {
+                ProjectId = createAndAssignTaskForEmployeeReqDto.ProjectId,
+                Name = createAndAssignTaskForEmployeeReqDto.Name,
+                Description = createAndAssignTaskForEmployeeReqDto.Description
+            };
+            var createTaskGoResDto = await CreateTask(createTaskGoReqDto);
+
+            var assignTaskGoReqDto = new AssignTaskGoReqDto
+            {
+                TaskId = createTaskGoResDto.Id,
+                EmployeeId = createAndAssignTaskForEmployeeReqDto.EmployeeId
+            };
+
+            await AssignTask(assignTaskGoReqDto);
+
+            var mailWhenAssignTaskPath = Directory.GetCurrentDirectory() + "/FileTemplate/Mail/MailWhenAssignTask.html";
+            var mailWhenAssignTask = File.ReadAllText(mailWhenAssignTaskPath);
+            mailWhenAssignTask = mailWhenAssignTask.Replace("##EMPLOYEE_NAME##", employee.Name)
+                .Replace("##TASK_NAME##", createAndAssignTaskForEmployeeReqDto.Name);
+
+            var emailAssignTaskDto = new EmailContentDto
+            {
+                Email = employee.Email,
+                Subject = "[HDV.Nhom2] Thông báo công việc mới",
+                Body = mailWhenAssignTask
+            };
+            _ = AddSendMailToQueue(emailAssignTaskDto);
+
+            return true;
+        }
+
+        private async Task<EmployeeGoDto> GetEmployee(string employeeId)
+        {
+            try
+            {
+                var url = $"{_companyServiceOptions.Value.BaseUrl}/employee/{employeeId}";
+                var getEmployeeResponse = await _callService.CallRestApiAsync(url, "GET", null);
+                if(getEmployeeResponse.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    throw new Nhom2Exception("E3000", "Lỗi hệ thống", System.Net.HttpStatusCode.InternalServerError);
+                }
+
+                var employeeGoDto = JsonConvert.DeserializeObject<EmployeeGoDto>(getEmployeeResponse.JsonObject);
+                return employeeGoDto;
+            }
+            catch (Exception ex)
+            {
+                throw new Nhom2Exception("E3000", "Lỗi hệ thống", System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+
+        /// <summary>
+        /// Tạo mới công việc
+        /// </summary>
+        /// <returns></returns>
+        private async Task<CreateTaskGoResDto> CreateTask(CreateTaskGoReqDto createTaskGoReqDto)
+        {
+            try
+            {
+                var url = $"{_projectServiceOptions.Value.BaseUrl}/project/{createTaskGoReqDto.ProjectId}/task";
+                var createTaskGoResponse = await _callService.CallRestApiAsync(url, "POST", createTaskGoReqDto);
+                if(createTaskGoResponse.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    throw new Nhom2Exception("E3000", "Lỗi hệ thống", System.Net.HttpStatusCode.InternalServerError);
+                }
+
+                var createTaskGoResDto = JsonConvert.DeserializeObject<CreateTaskGoResDto>(createTaskGoResponse.JsonObject);
+                return createTaskGoResDto;
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error("EmployeeService-CreateTask-Exception: {ex}", ex);
+                throw new Nhom2Exception("E3000", "Lỗi hệ thống", System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+
+        private async Task AssignTask(AssignTaskGoReqDto assignTaskGoReqDto)
+        {
+            try
+            {
+                var url = $"{_projectServiceOptions.Value.BaseUrl}/task-assign";
+
+                var assignTaskGoResponse = await _callService.CallRestApiAsync(url, "POST", assignTaskGoReqDto);
+
+                if (assignTaskGoResponse.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    throw new Nhom2Exception("E3000", "Lỗi hệ thống", System.Net.HttpStatusCode.InternalServerError);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Error("EmployeeService-AssignTask-Exception: {ex}", ex);
+                throw new Nhom2Exception("E3000", "Lỗi hệ thống", System.Net.HttpStatusCode.InternalServerError);
+            }
+        }
+
+        /// <summary>
+        /// Lấy danh sách nhân viên bằng email hoặc tên
+        /// </summary>
+        /// <param name="emailOrName"></param>
+        /// <returns></returns>
+        public async Task<GetListEmployeeDto<EmployeeDto>> GetListEmployee(string emailOrName)
+        {
+            var url = $"{_companyServiceOptions.Value.BaseUrl}/employee/search";
+
+            var getListEmployeeGoResponse = await _callService.CallRestApiAsync(url, "POST", new
+            {
+                keyword = emailOrName
+            });
+
+            if(getListEmployeeGoResponse.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                throw new Nhom2Exception("E3000", "Lỗi hệ thống", System.Net.HttpStatusCode.InternalServerError);
+            }
+
+            var getListEmployeeGoRes = JsonConvert.DeserializeObject<GetListEmployeeDto<EmployeeGoDto>>(getListEmployeeGoResponse.JsonObject);
+
+            var getListEmployeeRes = new GetListEmployeeDto<EmployeeDto>();
+
+            if(getListEmployeeGoRes.TotalCount > 0)
+            {
+                foreach(var employee in getListEmployeeGoRes.Items)
+                {
+                    getListEmployeeRes.Items.Add(new EmployeeDto
+                    {
+                        Id = employee.Id,
+                        Name = employee.Name,
+                        Email = employee.Email,
+                        DateOfBirth = employee.DateOfBirth,
+                        Gender = employee.Gender,
+                        Role = employee.Role
+                    });
+                }
+            }
+
+            return getListEmployeeRes;
         }
     }
 }

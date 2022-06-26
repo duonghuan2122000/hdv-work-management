@@ -67,6 +67,25 @@ namespace HDV.Nhom2.Gateway.BL
 
             return companyDto;
         }
+
+        /// <summary>
+        /// Lấy tất cả danh sách công ty
+        /// </summary>
+        /// CreatedBy: dbhuan 25/06/2022
+        public async Task<List<CompanyDto>> GetListAsync()
+        {
+            var getListCompanyGoUrl = $"{_companyServiceOptions.Value.BaseUrl}/companies?page=1&limit=100000";
+
+            var getListCompanyGoResponse = await _callService.CallRestApiAsync(getListCompanyGoUrl, "GET", null);
+
+            if(getListCompanyGoResponse.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                throw new Nhom2Exception("E3000", "Lỗi hệ thống", System.Net.HttpStatusCode.InternalServerError);
+            }
+
+            var getListCompanyRes = JsonConvert.DeserializeObject<GetListCompanyGoResDto>(getListCompanyGoResponse.JsonObject);
+            return getListCompanyRes.Items;
+        }
         #endregion
     }
 }

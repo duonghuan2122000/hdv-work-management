@@ -1,6 +1,7 @@
 ﻿using Confluent.Kafka;
 using HDV.Nhom2.Infrastructure.Contracts.Queue;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace HDV.Nhom2.Infrastructure.Queue
     {
         private readonly IOptions<KafkaProducerOption> _kafkaProducerOptions;
 
-        private readonly IProducer<TKey, TValue> _producer;
+        private readonly IProducer<TKey, string> _producer;
 
         public KafkaProducer(IOptions<KafkaProducerOption> kafkaProducerOptions)
         {
@@ -32,7 +33,7 @@ namespace HDV.Nhom2.Infrastructure.Queue
                 ClientId = Dns.GetHostName()
             };
 
-            _producer = new ProducerBuilder<TKey, TValue>(config).Build();
+            _producer = new ProducerBuilder<TKey, string>(config).Build();
         }
 
         /// <summary>
@@ -45,10 +46,10 @@ namespace HDV.Nhom2.Infrastructure.Queue
         /// <returns></returns>
         public async Task ProduceAsync(string topic, TKey key, TValue value)
         {
-            await _producer.ProduceAsync(topic, new Message<TKey, TValue>
+            await _producer.ProduceAsync(topic, new Message<TKey, string>
             {
                 Key = key,
-                Value = value
+                Value = JsonConvert.SerializeObject(value)
             });
             Log.Logger.Debug("KafkaProducer-ProduceAsync: topic={topic}, key={@key}, value={@value}", topic, key, value);
         }
@@ -62,7 +63,7 @@ namespace HDV.Nhom2.Infrastructure.Queue
 
     public class KafkaConsumer<TKey, TValue> : IDisposable, IKafkaConsumer<TKey, TValue>
     {
-        private readonly IConsumer<TKey, TValue> _consumer;
+        private readonly IConsumer<TKey, string> _consumer;
 
         private readonly IKafkaHandler<TKey, TValue> _handler;
 
@@ -74,7 +75,7 @@ namespace HDV.Nhom2.Infrastructure.Queue
                 GroupId = "HDV.Nhom2"
             };
 
-            _consumer = new ConsumerBuilder<TKey, TValue>(config).Build();
+            _consumer = new ConsumerBuilder<TKey, string>(config).Build();
 
             _handler = handler;
         }
@@ -99,7 +100,7 @@ namespace HDV.Nhom2.Infrastructure.Queue
                     {
                         Log.Logger.Debug("KafkaConsumer-ConsumeAsync: topic={topic}, key={@key}, value={@value}", topic, result.Message.Key, result.Message.Value);
                         //result.Message.Value;
-                        await _handler.HandlerAsync(result.Message.Key, result.Message.Value);
+                        await _handler.HandlerAsync(result.Message.Key, JsonConvert.DeserializeObject<TValue>(result.Message.Value));
                     }
                 }
                 catch (Exception ex)

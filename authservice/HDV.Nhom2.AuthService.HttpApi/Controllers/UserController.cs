@@ -34,6 +34,14 @@ namespace HDV.Nhom2.AuthService.HttpApi.Controllers
             Log.Logger.Debug("UserController-CreateUserAsync-Res: {@newUser}", newUser);
             return newUser;
         }
+
+        [HttpPost("authenticate")]
+        public async Task<AuthenticateResDto> LoginAsync(AuthenticateReqDto authenticateReqDto)
+        {
+            var authServiceBL = new AuthServiceBL(_connectionString);
+            var res = await authServiceBL.LoginAsync(authenticateReqDto);
+            return res;
+        }
         #endregion
     }
 }

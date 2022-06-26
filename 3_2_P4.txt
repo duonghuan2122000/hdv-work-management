@@ -1,0 +1,84 @@
+Dịch vụ quản lý công việc
+
+Dịch vụ quản lý công việc giúp công ty có thể dễ dang quản lý các dự án và công việc của từng nhân viên trong công ty.
+Đề tài bài tập của nhóm tập trung vào thông báo cho nhân viên và người dùng có đăng ký nhận thông báo của nhân viên đó
+
+Link Github: 
+https://github.com/duonghuan2122000/hdv-work-management
+
+Các chức năng chính:
+1. Đăng ký nhận thông báo qua Email
+2. Thông báo qua Email khi có task mới được gán cho nhân viên
+
+Công nghệ sử dụng:
+- Kiến trúc hướng dịch vụ: Restful Service
+- Ngôn ngữ sử dụng: .NET 5, 6 và Go Lang
+- Database: Mariadb 10
+- Server: Ubuntu 20.04
+- Enviromonent: Docker, Nginx
+- Elastic Kibana: Sử dụng để truy vấn thông tin nhân viên bằng tên hoặc email
+- Công nghệ khác: GRPC (Framework giao tiếp giữa các service)
+
+Người đóng góp
+1. Dương Bằng Huân: B18DCCN251
+- Xây dựng các service
+ + AuthService
+ + ProjectService
+ + GatewayService
+ + NotifyService
+ + WorkerEmail
+ + Kafka
+ + Kafdrop
+- Quản lý code chung
+- Kiểm duyệt và deploy các phiên bản code mới
+2. Nguyễn Quang Minh: B18DCCN405
+- Xây dựng các service:
+ + Go Company Rest
+ + Go Company GRPC 
+ + Go Project Rest 
+ + Go Project GRPC
+ + Nginx điều hướng cho Company và Project 
+ + Elastic Search
+ + Kibana
+3. Nguyễn Thị Hồng: B18DCCN250
+- Xây dựng:
+ + UI
+- Phân tích nghiệp vụ cho phần mềm
+- Thiết kế giao diện cho hệ thống
+
+Lịch sử phát triển
+02/04/2022
+- Họp nhóm chốt ý tưởng cho đề tài phần mềm: Phần mềm quản lý công việc
+
+09/04/2022
+- Học nhóm phân tích nghiệp vụ cho đề tài phần mềm quản lý công việc
+
+16/04/2022
+- Phân tích và mô hình hóa nghiệp vụ cho đề tài phần mềm quản lý công việc
+- Thiết kế cho đề tài phần mềm quản lý công việc
+- Xây dựng core cho phần mềm: thực thể, service, ...
+
+24/04/2022
+- Họp nhóm thống nhất lại giới hạn của đề tài phần mềm
+
+02/05/2022
+- Thực hiện rà soát lại code của dự án
+
+04/05/2022
+- Ghép các service lại và họp lại thống nhất, hoàn thiện báo cáo
+
+19/06/2022
+- NTHong: 
+ + Thiết kế giao diện danh sách công việc, 
+ + Thiết kế giao diện mail khi nhân viên đăng ký, 
+ + Thiết kế giao diện mail nhận công việc mới
+- NQMinh: 
+ + Cập nhật service company, project
+ + Triển khai ELK cho phép truy vấn nhân viên bằng tên hoặc email
+- DBHuan:
+ + Xây dựng hàng đợi sử dụng Kafka và Kafdrop
+
+26/06/2022:
+- DBHuan:
+ + Ghép các service và giao diện
+

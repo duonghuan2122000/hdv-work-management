@@ -8,8 +8,10 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - "6000:80"
+      - "6001:81"
     expose:
       - "80"
+      - "81"
     hostname: nginx
     container_name: nginx
     networks:
@@ -18,9 +20,9 @@ services:
     #   resources:
     #     limits:
     #       memory: 128M
-  
+
   go-company-rest:
-    image:  n3kizz/go-company-service:latest
+    image: n3kizz/go-company-service:latest
     restart: always
     command: go-company-service serve rest
     environment:
@@ -38,9 +40,9 @@ services:
     #   resources:
     #     limits:
     #       memory: 128M
-  
+
   go-company-grpc:
-    image:  n3kizz/go-company-service:latest
+    image: n3kizz/go-company-service:latest
     restart: always
     command: go-company-service serve grpc
     environment:
@@ -58,7 +60,7 @@ services:
     #       memory: 128M
 
   go-project-rest:
-    image:  n3kizz/go-project-service:latest
+    image: n3kizz/go-project-service:latest
     restart: always
     command: go-project-service serve rest
     environment:
@@ -78,7 +80,7 @@ services:
     #       memory: 128M
 
   go-project-grpc:
-    image:  n3kizz/go-project-service:latest
+    image: n3kizz/go-project-service:latest
     restart: always
     command: go-project-service serve grpc
     environment:

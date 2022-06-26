@@ -50,6 +50,31 @@ namespace HDV.Nhom2.AuthService.BL
             return newUser;
         }
 
+        public async Task<AuthenticateResDto> LoginAsync(AuthenticateReqDto authenticateReqDto)
+        {
+            using var authServiceDL = new AuthServiceDL(_connectionString);
+
+            var user = await authServiceDL.GetUserByEmail(authenticateReqDto.Email);
+
+            if(user == null)
+            {
+                throw new Nhom2Exception("E1000", "Email không đúng");
+            }
+
+            var passwordHash = CreateMD5($"{authenticateReqDto.Password}{user.PasswordSalt}");
+            if(!passwordHash.Equals(user.PasswordHash, StringComparison.OrdinalIgnoreCase))
+            {
+                throw new Nhom2Exception("E1001", "Mật khẩu không đúng");
+            }
+
+            var authenticateResDto = new AuthenticateResDto
+            {
+                Token = ""
+            };
+
+            return authenticateResDto;
+        }
+
         private string CreateMD5(string input)
         {
             // Use input string to calculate MD5 hash

@@ -29,6 +29,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HDV.Nhom2.EmailWorker", "no
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HDV.Nhom2.NotifyService.HttpApi", "notifyservice\HDV.Nhom2.NotifyService\HDV.Nhom2.NotifyService\HDV.Nhom2.NotifyService.HttpApi\HDV.Nhom2.NotifyService.HttpApi.csproj", "{E57C785B-F20F-441C-BF31-FAF5CE178F62}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{382E0BE5-1688-47ED-9843-004C43B2D391}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HDV.Nhom2.Project.HttpApi", "project\HDV.Nhom2.Project.HttpApi\HDV.Nhom2.Project.HttpApi.csproj", "{0A9D9046-9746-4AB6-958D-ECCAFF81F43E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +75,10 @@ Global
 		{E57C785B-F20F-441C-BF31-FAF5CE178F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E57C785B-F20F-441C-BF31-FAF5CE178F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E57C785B-F20F-441C-BF31-FAF5CE178F62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A9D9046-9746-4AB6-958D-ECCAFF81F43E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A9D9046-9746-4AB6-958D-ECCAFF81F43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A9D9046-9746-4AB6-958D-ECCAFF81F43E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A9D9046-9746-4AB6-958D-ECCAFF81F43E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,6 +93,7 @@ Global
 		{2066567C-21EB-4B8A-A73F-3BAF343D1AB9} = {E6193857-7390-44EF-9BF6-5374973316DB}
 		{5C5FEBBC-8DB5-476B-AC15-208DB3761E39} = {180E587D-2936-40CD-89B8-4490D180F623}
 		{E57C785B-F20F-441C-BF31-FAF5CE178F62} = {180E587D-2936-40CD-89B8-4490D180F623}
+		{0A9D9046-9746-4AB6-958D-ECCAFF81F43E} = {382E0BE5-1688-47ED-9843-004C43B2D391}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B93F38D-D759-4E9F-859E-3BEE10D63D37}

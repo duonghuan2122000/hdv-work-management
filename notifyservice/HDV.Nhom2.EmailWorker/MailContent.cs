@@ -15,7 +15,7 @@ namespace HDV.Nhom2.EmailWorker
         /// <summary>
         /// Người nhận
         /// </summary>
-        public string To { get; set; }
+        public string Email { get; set; }
 
         /// <summary>
         /// Chủ đề mail

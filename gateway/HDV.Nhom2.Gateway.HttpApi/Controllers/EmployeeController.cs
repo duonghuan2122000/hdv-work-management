@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace HDV.Nhom2.Gateway.HttpApi.Controllers
 {
-    [Route("employeess")]
+    [Route("employees")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
@@ -40,6 +40,30 @@ namespace HDV.Nhom2.Gateway.HttpApi.Controllers
             var createEmployeeResDto = await _employeeService.CreateAsync(createEmployeeReqDto);
             Log.Logger.Debug("EmployeeController-CreateAsync-Res: {@createEmployeeResDto}", createEmployeeResDto);
             return Ok(createEmployeeResDto);
+        }
+
+        /// <summary>
+        /// Lấy danh sách nhân viên bằng email hoặc tên
+        /// </summary>
+        [HttpGet("list")]
+        public async Task<IActionResult> GetListEmployee([FromQuery] string keyword)
+        {
+            Log.Logger.Debug("EmployeeController-GetListEmployee");
+            var res = await _employeeService.GetListEmployee(keyword);
+            return Ok(res);
+        }
+
+        /// <summary>
+        /// Tạo và giao task cho nhân viên
+        /// </summary>
+        /// CreatedBy: dbhuan 25/06/2022
+        /// <param name="createAndAssignTaskForEmployeeReqDto"></param>
+        /// <returns></returns>
+        [HttpPost("assign-task")]
+        public async Task<bool> CreateAndAssignTaskForEmployee(CreateAndAssignTaskForEmployeeReqDto createAndAssignTaskForEmployeeReqDto)
+        {
+            var res = await _employeeService.CreateAndAssignTaskForEmployee(createAndAssignTaskForEmployeeReqDto);
+            return res;
         }
     }
 }

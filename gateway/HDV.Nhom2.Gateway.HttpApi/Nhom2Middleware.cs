@@ -1,6 +1,8 @@
 ﻿using HDV.Nhom2.Gateway.BL;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +34,7 @@ namespace HDV.Nhom2.Gateway.HttpApi
 
         private async Task HandleException(HttpContext context, Exception ex)
         {
+            Log.Logger.Error("Nhom2Middleware-HandleException: {ex}", ex);
             string errorCode = "E3000";
             string errorMessage = "Lỗi hệ thống";
             HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
@@ -50,6 +53,9 @@ namespace HDV.Nhom2.Gateway.HttpApi
             {
                 ErrorCode = errorCode,
                 ErrorMessage = errorMessage
+            }, new JsonSerializerSettings 
+            { 
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
             }));
         }
     }

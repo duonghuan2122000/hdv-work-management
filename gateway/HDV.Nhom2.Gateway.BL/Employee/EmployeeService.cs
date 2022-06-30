@@ -27,12 +27,15 @@ namespace HDV.Nhom2.Gateway.BL
 
         private readonly IOptions<ProjectServiceOption> _projectServiceOptions;
 
+        private readonly IOptions<ProjectNetServiceOption> _projectNetServiceOptions;
+
         public EmployeeService(ICallService callService, 
             IOptions<AuthServiceOption> authServiceOptions,
             IKafkaProducer<Null, EmailContentDto> producer,
             ICompanyService companyService,
             IOptions<CompanyServiceOption> companyServiceOptions,
-            IOptions<ProjectServiceOption> projectServiceOptions)
+            IOptions<ProjectServiceOption> projectServiceOptions,
+            IOptions<ProjectNetServiceOption> projectNetServiceOptions)
         {
             _callService = callService;
             _authServiceOptions = authServiceOptions;
@@ -40,6 +43,7 @@ namespace HDV.Nhom2.Gateway.BL
             _companyService = companyService;
             _companyServiceOptions = companyServiceOptions;
             _projectServiceOptions = projectServiceOptions;
+            _projectNetServiceOptions = projectNetServiceOptions;
         }
 
         /// <summary>
@@ -294,27 +298,27 @@ namespace HDV.Nhom2.Gateway.BL
         /// </summary>
         /// <param name="emailOrName"></param>
         /// <returns></returns>
-        public async Task<GetListEmployeeDto<EmployeeDto>> GetListEmployee(string emailOrName)
+        public async Task<GetListEmployeeDto<EmployeeDto>> GetListEmployee(string emailOrName, int companyId)
         {
-            var url = $"{_companyServiceOptions.Value.BaseUrl}/employee/search";
+            //var url = $"{_companyServiceOptions.Value.BaseUrl}/employee/search";
+            var url = $"{_projectNetServiceOptions.Value.BaseUrl}/employees/list?keyword={emailOrName}&companyId={companyId}";
 
-            var getListEmployeeGoResponse = await _callService.CallRestApiAsync(url, "POST", new
-            {
-                keyword = emailOrName
-            });
+            var getListEmployeeGoResponse = await _callService.CallRestApiAsync(url, "GET", null);
+
+            Log.Logger.Debug("EmployeeService-GetListEmployee-CallService-Req: {@getListEmployeeGoResponse}", getListEmployeeGoResponse);
 
             if(getListEmployeeGoResponse.StatusCode != System.Net.HttpStatusCode.OK)
             {
                 throw new Nhom2Exception("E3000", "Lỗi hệ thống", System.Net.HttpStatusCode.InternalServerError);
             }
 
-            var getListEmployeeGoRes = JsonConvert.DeserializeObject<GetListEmployeeDto<EmployeeGoDto>>(getListEmployeeGoResponse.JsonObject);
+            var getListEmployeeGoRes = JsonConvert.DeserializeObject<List<EmployeeGoDto>>(getListEmployeeGoResponse.JsonObject);
 
             var getListEmployeeRes = new GetListEmployeeDto<EmployeeDto>();
 
-            if(getListEmployeeGoRes.TotalCount > 0)
+            if(getListEmployeeGoRes.Count > 0)
             {
-                foreach(var employee in getListEmployeeGoRes.Items)
+                foreach(var employee in getListEmployeeGoRes)
                 {
                     getListEmployeeRes.Items.Add(new EmployeeDto
                     {
@@ -326,9 +330,64 @@ namespace HDV.Nhom2.Gateway.BL
                         Role = employee.Role
                     });
                 }
+
+
+                getListEmployeeRes.TotalCount = getListEmployeeRes.Items.Count;
             }
 
             return getListEmployeeRes;
+        }
+
+
+        public async Task<AuthResDto> LoginAsync(AuthReqDto authReqDto)
+        {
+            var res = new AuthResDto();
+            try
+            {
+                var urlLogin = $"{_authServiceOptions.Value.BaseUrl}/users/authenticate";
+
+                var authUserReqDto = new AuthUserReqDto
+                {
+                    Email = authReqDto.Email,
+                    Password = authReqDto.Password
+                };
+
+                var authUserResponse = await _callService.CallRestApiAsync(urlLogin, "POST", authUserReqDto);
+
+                if(authUserResponse.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    var errorObj = JsonConvert.DeserializeObject<ErrorObj>(authUserResponse.JsonObject);
+                    throw new Nhom2Exception(errorObj.ErrorCode, errorObj.ErrorMessage, authUserResponse.StatusCode);
+                }
+                var authUserResDto = JsonConvert.DeserializeObject<AuthUserResDto>(authUserResponse.JsonObject);
+
+                res.Email = authUserResDto.Email;
+                res.Token = authUserResDto.Token;
+                //var listEmployee = await GetListEmployee(res.Email);
+                //var employee = listEmployee.Items[0];
+
+                var employeeNetUrl = $"{_projectNetServiceOptions.Value.BaseUrl}/employees/email?email={res.Email}";
+                var employeeNetResponse = await _callService.CallRestApiAsync(employeeNetUrl, "GET", null);
+
+                Log.Logger.Debug("EmployeeService-GetEmployee-CallService: {@employeeNetResponse}", employeeNetResponse);
+
+                var employeeNet = JsonConvert.DeserializeObject<EmployeeNetDto>(employeeNetResponse.JsonObject);
+
+                Log.Logger.Debug("EmployeeService-GetEmployee-CallService: {@employeeNet}", employeeNet);
+                res.Id = employeeNet.Id.ToString();
+                //res.Gender = employeeNet.Gender;
+                res.Role = employeeNet.Role;
+                res.CompanyId = employeeNet.CompanyId;
+            }
+            catch (Exception ex)
+            {
+                Log.Logger.Debug("EmployeeService-GetEmployee-Exception: {ex}", ex);
+                if (ex is Nhom2Exception)
+                    throw;
+                throw new Nhom2Exception("E3000", "Lỗi hệ thống", System.Net.HttpStatusCode.InternalServerError);
+            }
+
+            return res;
         }
     }
 }

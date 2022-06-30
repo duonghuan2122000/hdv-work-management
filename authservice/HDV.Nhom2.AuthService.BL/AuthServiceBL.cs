@@ -1,21 +1,29 @@
 ﻿using HDV.Nhom2.AuthService.DL;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HDV.Nhom2.AuthService.BL
 {
-    public class AuthServiceBL
+    public class AuthServiceBL: IAuthServiceBL
     {
         #region Khởi tạo
 
         private string _connectionString;
 
-        public AuthServiceBL(string connectionString)
+        private readonly IOptions<JwtSetting> _jwtSettings;
+
+        public AuthServiceBL(IConfiguration configuration,
+            IOptions<JwtSetting> jwtSettings)
         {
-            _connectionString = connectionString;
+            _connectionString = configuration.GetConnectionString("Default");
+            _jwtSettings = jwtSettings;
         }
         #endregion
 
@@ -67,9 +75,23 @@ namespace HDV.Nhom2.AuthService.BL
                 throw new Nhom2Exception("E1001", "Mật khẩu không đúng");
             }
 
+            string securityKey = _jwtSettings.Value.SecretKey;
+            var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(securityKey));
+
+            var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+
+            // create token
+            var token = new JwtSecurityToken(
+                issuer: "smesk.in",
+                audience: "readers",
+                expires: DateTime.Now.AddHours(1),
+                signingCredentials: signingCredentials
+            );
+
             var authenticateResDto = new AuthenticateResDto
             {
-                Token = ""
+                Token = new JwtSecurityTokenHandler().WriteToken(token),
+                Email = authenticateReqDto.Email
             };
 
             return authenticateResDto;

@@ -16,5 +16,7 @@ namespace HDV.Nhom2.AuthService.BL
     public class AuthenticateResDto
     {
         public string Token { get; set; }
+
+        public string Email { get; set; }
     }
 }

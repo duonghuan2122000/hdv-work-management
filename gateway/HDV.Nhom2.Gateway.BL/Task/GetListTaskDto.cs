@@ -9,7 +9,7 @@ namespace HDV.Nhom2.Gateway.BL
 {
     public class GetListTaskDto<T>
     {
-        [JsonProperty("total_count")]
+        [JsonProperty("totalCount")]
         public int TotalCount { get; set; } = 0;
 
         [JsonProperty("items")]
@@ -32,12 +32,6 @@ namespace HDV.Nhom2.Gateway.BL
 
         [JsonProperty("description")]
         public string Description { get; set; }
-
-        [JsonProperty("start_date")]
-        public DateTime StartDate { get; set; }
-
-        [JsonProperty("end_date")]
-        public DateTime EndDate { get; set; }
 
         public int Status
         {

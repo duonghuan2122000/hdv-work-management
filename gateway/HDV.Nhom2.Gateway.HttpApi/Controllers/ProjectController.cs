@@ -23,9 +23,9 @@ namespace HDV.Nhom2.Gateway.HttpApi.Controllers
         }
 
         [HttpGet("list")]
-        public async Task<GetListProjectDto<ProjectDto>> GetList()
+        public async Task<GetListProjectDto<ProjectDto>> GetList([FromQuery] int companyId)
         {
-            var res = await _projectService.GetList();
+            var res = await _projectService.GetList(companyId);
             return res;
         }
     }

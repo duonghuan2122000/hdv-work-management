@@ -15,18 +15,25 @@ namespace HDV.Nhom2.Gateway.BL
 
         private readonly IOptions<ProjectServiceOption> _projectServiceOptions;
 
+        private readonly IOptions<ProjectNetServiceOption> _projectNetServiceOptions;
+
         public ProjectService(ICallService callService,
-            IOptions<ProjectServiceOption> projectServiceOptions)
+            IOptions<ProjectServiceOption> projectServiceOptions, 
+            IOptions<ProjectNetServiceOption> projectNetServiceOptions)
         {
             _callService = callService;
             _projectServiceOptions = projectServiceOptions;
+            _projectNetServiceOptions = projectNetServiceOptions;
         }
 
-        public async Task<GetListProjectDto<ProjectDto>> GetList()
+        public async Task<GetListProjectDto<ProjectDto>> GetList(int companyId)
         {
-            var url = $"{_projectServiceOptions.Value.BaseUrl}/projects?page=1&limit=100000";
+            var url = $"{_projectNetServiceOptions.Value.BaseUrl}/projects/list";
 
-            var getListProjectResponse = await _callService.CallRestApiAsync(url, "GET", null);
+            var getListProjectResponse = await _callService.CallRestApiAsync(url, "POST", new 
+            {
+                companyId
+            });
 
             if(getListProjectResponse.StatusCode != System.Net.HttpStatusCode.OK)
             {

@@ -47,9 +47,12 @@ namespace HDV.Nhom2.NotifyService.HttpApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HDV.Nhom2.NotifyService.HttpApi v1"));
+                //app.UseSwagger();
+                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HDV.Nhom2.NotifyService.HttpApi v1"));
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HDV.Nhom2.NotifyService.HttpApi v1"));
 
             app.UseHttpsRedirection();
 

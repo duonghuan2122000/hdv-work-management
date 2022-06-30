@@ -21,12 +21,28 @@ Công nghệ sử dụng:
 
 Người đóng góp
 1. Dương Bằng Huân: B18DCCN251
+- Xây dựng các service
+ + AuthService
+ + ProjectService
+ + GatewayService
+ + NotifyService
+ + WorkerEmail
+ + Kafka
+ + Kafdrop
 - Quản lý code chung
 - Kiểm duyệt và deploy các phiên bản code mới
 2. Nguyễn Quang Minh: B18DCCN405
-- Xây dựng core quản lý thông tin công ty, dự án
-- Xây dựng ELK Kibana 
+- Xây dựng các service:
+ + Go Company Rest
+ + Go Company GRPC 
+ + Go Project Rest 
+ + Go Project GRPC
+ + Nginx điều hướng cho Company và Project 
+ + Elastic Search
+ + Kibana
 3. Nguyễn Thị Hồng: B18DCCN250
+- Xây dựng:
+ + UI
 - Phân tích nghiệp vụ cho phần mềm
 - Thiết kế giao diện cho hệ thống
 
@@ -39,23 +55,31 @@ Lịch sử phát triển
 
 16/04/2022
 - Phân tích và mô hình hóa nghiệp vụ cho đề tài phần mềm quản lý công việc
+ + Vẽ biểu đồ lớp phân tích
+ + Lên kịch bản và các ngoại lệ
+ + Vẽ luồng hoạt động: đăng ký mới và giao công việc cho nhân viên
 - Thiết kế cho đề tài phần mềm quản lý công việc
 - Xây dựng core cho phần mềm: thực thể, service, ...
 
 24/04/2022
 - Họp nhóm thống nhất lại giới hạn của đề tài phần mềm
-
-02/05/2022
-- Thực hiện rà soát lại code của dự án
+- Xây dựng kiến trúc hệ thống:
 
 04/05/2022
-- Ghép các service lại và họp lại thống nhất, hoàn thiện báo cáo
+- Chọn các công nghệ để xây dựng và triển khai
 
-19/06/2022
-- NTHong: Thiết kế giao diện danh sách công việc, giao diện mail khi nhân viên đăng ký, mail nhận công việc mới
-- NQMinh: Triển khai ELK cho phép truy vấn nhân viên bằng tên hoặc email
+04/06/2022
+- NTHong: 
+ + Thiết kế giao diện danh sách công việc, 
+ + Thiết kế giao diện mail khi nhân viên đăng ký, 
+ + Thiết kế giao diện mail nhận công việc mới
+- NQMinh: 
+ + Cập nhật service company, project
+ + Triển khai ELK cho phép truy vấn nhân viên bằng tên hoặc email
+- DBHuan:
+ + Xây dựng hàng đợi sử dụng Kafka và Kafdrop
 
 26/06/2022:
-- DBHuan: Ghép các service lại với nhau
-
+- DBHuan:
+ + Ghép các service và giao diện
 

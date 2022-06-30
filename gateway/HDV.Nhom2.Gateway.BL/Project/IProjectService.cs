@@ -8,6 +8,6 @@ namespace HDV.Nhom2.Gateway.BL
 {
     public interface IProjectService
     {
-        Task<GetListProjectDto<ProjectDto>> GetList();
+        Task<GetListProjectDto<ProjectDto>> GetList(int companyId);
     }
 }

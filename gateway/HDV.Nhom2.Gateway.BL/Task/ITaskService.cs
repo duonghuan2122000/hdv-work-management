@@ -8,6 +8,6 @@ namespace HDV.Nhom2.Gateway.BL
 {
     public interface ITaskService
     {
-        Task<GetListTaskDto<TaskDto>> GetList();
+        Task<GetListTaskDto<TaskDto>> GetList(int employeeId);
     }
 }

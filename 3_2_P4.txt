@@ -53,32 +53,46 @@ Lịch sử phát triển
 09/04/2022
 - Học nhóm phân tích nghiệp vụ cho đề tài phần mềm quản lý công việc
 
-16/04/2022
+12/04/2022
 - Phân tích và mô hình hóa nghiệp vụ cho đề tài phần mềm quản lý công việc
+ + Vẽ biểu đồ lớp phân tích
+ + Lên kịch bản và các ngoại lệ
+ + Vẽ luồng hoạt động: đăng ký mới và giao công việc cho nhân viên
 - Thiết kế cho đề tài phần mềm quản lý công việc
 - Xây dựng core cho phần mềm: thực thể, service, ...
+- Xây dựng cơ sở dữ liệu cho các service
 
-24/04/2022
+15/04/2022
 - Họp nhóm thống nhất lại giới hạn của đề tài phần mềm
+- Xây dựng kiến trúc hệ thống:
 
-02/05/2022
-- Thực hiện rà soát lại code của dự án
+20/04/2022
+- Chọn các công nghệ để xây dựng và triển khai
+
+25/04/2022
+- Deploy các service lên server (phiên bản 1)
+
+01/05/2022
+- Format code và chỉnh sửa lại một số đầu api của service company và project 
+- Thêm trường startDate và endDate trong bảng task của db project
 
 04/05/2022
-- Ghép các service lại và họp lại thống nhất, hoàn thiện báo cáo
+- Deploy các service lên server (phiên bản 2)
 
-19/06/2022
-- NTHong: 
- + Thiết kế giao diện danh sách công việc, 
- + Thiết kế giao diện mail khi nhân viên đăng ký, 
- + Thiết kế giao diện mail nhận công việc mới
-- NQMinh: 
- + Cập nhật service company, project
- + Triển khai ELK cho phép truy vấn nhân viên bằng tên hoặc email
-- DBHuan:
- + Xây dựng hàng đợi sử dụng Kafka và Kafdrop
+06/05/2022
+- Báo cáo lần 1
+
+04/06/2022
+- Thiết kế giao diện danh sách công việc, 
+- Thiết kế giao diện mail khi nhân viên đăng ký, 
+- Thiết kế giao diện mail nhận công việc mới
+- Cập nhật service company, project
+- Triển khai ELK cho phép truy vấn nhân viên bằng tên hoặc email
+- Xây dựng hàng đợi sử dụng Kafka và Kafdrop
 
 26/06/2022:
-- DBHuan:
- + Ghép các service và giao diện
+- Ghép các service và giao diện
+ 
+29/06/2022
+- Deploy các service lên server (phiên bản 3)
 

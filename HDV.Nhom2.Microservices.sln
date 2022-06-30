@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HDV.Nhom2.NotifyService.Htt
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "project", "project", "{382E0BE5-1688-47ED-9843-004C43B2D391}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HDV.Nhom2.Project.HttpApi", "project\HDV.Nhom2.Project.HttpApi\HDV.Nhom2.Project.HttpApi.csproj", "{0A9D9046-9746-4AB6-958D-ECCAFF81F43E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HDV.Nhom2.Project.HttpApi", "project\HDV.Nhom2.Project.HttpApi\HDV.Nhom2.Project.HttpApi.csproj", "{0A9D9046-9746-4AB6-958D-ECCAFF81F43E}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C517B226-AB24-46FE-8555-4206B8A8565E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{0A9D9046-9746-4AB6-958D-ECCAFF81F43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A9D9046-9746-4AB6-958D-ECCAFF81F43E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A9D9046-9746-4AB6-958D-ECCAFF81F43E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C517B226-AB24-46FE-8555-4206B8A8565E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C517B226-AB24-46FE-8555-4206B8A8565E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C517B226-AB24-46FE-8555-4206B8A8565E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C517B226-AB24-46FE-8555-4206B8A8565E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -48,6 +48,7 @@ namespace HDV.Nhom2.Gateway.HttpApi
             services.Configure<AuthServiceOption>(Configuration.GetSection("AuthService"));
             services.Configure<CompanyServiceOption>(Configuration.GetSection("CompanyService"));
             services.Configure<ProjectServiceOption>(Configuration.GetSection("ProjectService"));
+            services.Configure<ProjectNetServiceOption>(Configuration.GetSection("ProjectNetService"));
 
             services.AddTransient<ICallService, CallService>();
             services.AddTransient(typeof(IKafkaProducer<,>), typeof(KafkaProducer<,>));
@@ -55,6 +56,7 @@ namespace HDV.Nhom2.Gateway.HttpApi
             services.AddTransient<IEmployeeService, EmployeeService>();
             services.AddTransient<ICompanyService, CompanyService>();
             services.AddTransient<IProjectService, ProjectService>();
+            services.AddTransient<ITaskService, TaskService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,9 +65,12 @@ namespace HDV.Nhom2.Gateway.HttpApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HDV.Nhom2.Gateway.HttpApi v1"));
+                //app.UseSwagger();
+                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HDV.Nhom2.Gateway.HttpApi v1"));
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HDV.Nhom2.Gateway.HttpApi v1"));
 
             app.UseHttpsRedirection();
 

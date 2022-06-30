@@ -16,11 +16,12 @@ namespace HDV.Nhom2.AuthService.HttpApi.Controllers
     public class UserController : ControllerBase
     {
         #region Khởi tạo
-        private readonly string _connectionString;
 
-        public UserController(IConfiguration configuration)
+        private readonly IAuthServiceBL _authServiceBL;
+
+        public UserController(IAuthServiceBL authServiceBL)
         {
-            _connectionString = configuration.GetConnectionString("Default");
+            _authServiceBL = authServiceBL;    
         }
         #endregion
 
@@ -29,8 +30,7 @@ namespace HDV.Nhom2.AuthService.HttpApi.Controllers
         public async Task<User> CreateUserAsync(CreateUserReqDto createUserReqDto)
         {
             Log.Logger.Debug("UserController-CreateUserAsync-Req: {@createUserReqDto}", createUserReqDto);
-            var authServiceBL = new AuthServiceBL(_connectionString);
-            var newUser = await authServiceBL.CreateUserAsync(createUserReqDto);
+            var newUser = await _authServiceBL.CreateUserAsync(createUserReqDto);
             Log.Logger.Debug("UserController-CreateUserAsync-Res: {@newUser}", newUser);
             return newUser;
         }
@@ -38,8 +38,7 @@ namespace HDV.Nhom2.AuthService.HttpApi.Controllers
         [HttpPost("authenticate")]
         public async Task<AuthenticateResDto> LoginAsync(AuthenticateReqDto authenticateReqDto)
         {
-            var authServiceBL = new AuthServiceBL(_connectionString);
-            var res = await authServiceBL.LoginAsync(authenticateReqDto);
+            var res = await _authServiceBL.LoginAsync(authenticateReqDto);
             return res;
         }
         #endregion

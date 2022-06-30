@@ -24,13 +24,13 @@ namespace HDV.Nhom2.Project.HttpApi.Controllers
         public async Task<GetListTaskDto> GetList(GetListTaskFilterDto getListTaskFilterDto)
         {
             var conn = new MySqlConnection(_configuration.GetConnectionString("Default"));
-            string sql = @"SELECT t.id AS Id, t.name AS Name, t.status AS Status, t.description AS Description, t.created_at AS CreatedDate, t.end_date AS EndDate, et.employee_id AS EmployeeId, t.project_id as ProjectId
+            string sql = @"SELECT t.id AS Id, t.name AS Name, t.status AS Status, t.description AS Description, t.created_at AS CreatedDate, et.employee_id AS EmployeeId, t.project_id as ProjectId
 FROM tasks t
 JOIN employee_tasks et ON t.id = et.task_id;";
 
             if (getListTaskFilterDto.EmployeeId != null)
             {
-                sql = $@"SELECT t.id AS Id, t.name AS Name, t.status AS Status, t.description AS Description, t.created_at AS CreatedDate, t.end_date AS EndDate, et.employee_id AS EmployeeId, t.project_id as ProjectId
+                sql = $@"SELECT t.id AS Id, t.name AS Name, t.status AS Status, t.description AS Description, t.created_at AS CreatedDate, et.employee_id AS EmployeeId, t.project_id as ProjectId
 FROM tasks t
 JOIN employee_tasks et ON t.id = et.task_id
 WHERE et.employee_id = '{getListTaskFilterDto.EmployeeId}';";

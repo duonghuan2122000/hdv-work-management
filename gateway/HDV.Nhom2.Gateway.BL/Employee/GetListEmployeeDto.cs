@@ -62,6 +62,21 @@ namespace HDV.Nhom2.Gateway.BL
         public int Gender { get; set; }
     }
 
+    public class EmployeeNetDto
+    {
+        public int Id { get; set; }
+
+        public string Email { get; set; }
+
+        //public DateTime DateOfBirth { get; set; }
+
+        public int Gender { get; set; }
+
+        public string Role { get; set; }
+
+        public int CompanyId { get; set; }
+    }
+
     public class GetListEmployeeDto<T>
     {
         [JsonProperty("items")]

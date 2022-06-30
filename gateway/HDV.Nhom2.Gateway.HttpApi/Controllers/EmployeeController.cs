@@ -46,10 +46,10 @@ namespace HDV.Nhom2.Gateway.HttpApi.Controllers
         /// Lấy danh sách nhân viên bằng email hoặc tên
         /// </summary>
         [HttpGet("list")]
-        public async Task<IActionResult> GetListEmployee([FromQuery] string keyword)
+        public async Task<IActionResult> GetListEmployee([FromQuery] string keyword, [FromQuery] int companyId)
         {
             Log.Logger.Debug("EmployeeController-GetListEmployee");
-            var res = await _employeeService.GetListEmployee(keyword);
+            var res = await _employeeService.GetListEmployee(keyword, companyId);
             return Ok(res);
         }
 
@@ -63,6 +63,13 @@ namespace HDV.Nhom2.Gateway.HttpApi.Controllers
         public async Task<bool> CreateAndAssignTaskForEmployee(CreateAndAssignTaskForEmployeeReqDto createAndAssignTaskForEmployeeReqDto)
         {
             var res = await _employeeService.CreateAndAssignTaskForEmployee(createAndAssignTaskForEmployeeReqDto);
+            return res;
+        }
+
+        [HttpPost("auth")]
+        public async Task<AuthResDto> LoginAsync(AuthReqDto authReqDto)
+        {
+            var res = await _employeeService.LoginAsync(authReqDto);
             return res;
         }
     }

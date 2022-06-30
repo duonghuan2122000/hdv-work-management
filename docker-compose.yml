@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  hdv-nhom2-authservice-httpapi:
+    image: 01686120288/hdvnhom2authservicehttpapi:1.1.0
+    build:
+      context: .
+      dockerfile: authservice/HDV.Nhom2.AuthService.HttpApi/Dockerfile
+
+  hdv-nhom2-project-httpapi:
+    image: 01686120288/hdvnhom2projecthttpapi:1.1.0
+    build:
+      context: .
+      dockerfile: project/HDV.Nhom2.Project.HttpApi/Dockerfile
+
+
+  hdv-nhom2-notifyservice-httpapi:
+    image: 01686120288/hdvnhom2notifyservicehttpapi:1.1.0
+    build:
+      context: .
+      dockerfile: notifyservice/HDV.Nhom2.NotifyService/HDV.Nhom2.NotifyService/HDV.Nhom2.NotifyService.HttpApi/Dockerfile
+
+
+  hdv-nhom2-emailworker:
+    image: 01686120288/hdvnhom2emailworker:1.1.0
+    build:
+      context: .
+      dockerfile: notifyservice/HDV.Nhom2.EmailWorker/Dockerfile
+
+
+  hdv-nhom2-gateway-httpapi:
+    image: 01686120288/hdvnhom2gatewayhttpapi:1.1.0
+    build:
+      context: .
+      dockerfile: gateway/HDV.Nhom2.Gateway.HttpApi/Dockerfile
+

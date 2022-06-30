@@ -23,6 +23,8 @@ namespace HDV.Nhom2.Gateway.BL
         /// </summary>
         /// <param name="emailOrName"></param>
         /// <returns></returns>
-        Task<GetListEmployeeDto<EmployeeDto>> GetListEmployee(string emailOrName);
+        Task<GetListEmployeeDto<EmployeeDto>> GetListEmployee(string emailOrName, int companyId);
+
+        Task<AuthResDto> LoginAsync(AuthReqDto authReqDto);
     }
 }

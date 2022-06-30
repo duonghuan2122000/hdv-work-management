@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using HDV.Nhom2.Gateway.BL;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,17 @@ namespace HDV.Nhom2.Gateway.HttpApi.Controllers
     [ApiController]
     public class TaskController : ControllerBase
     {
-        public TaskController()
+        private readonly ITaskService _taskService;
+        public TaskController(ITaskService taskService)
         {
-
+            _taskService = taskService;
         }
 
-
+        [HttpGet("list")]
+        public async Task<GetListTaskDto<TaskDto>> GetList([FromQuery] int employeeId)
+        {
+            var res = await _taskService.GetList(employeeId);
+            return res;
+        }
     }
 }

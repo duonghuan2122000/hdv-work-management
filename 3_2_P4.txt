@@ -25,7 +25,6 @@ Người đóng góp
  + AuthService
  + ProjectService
  + GatewayService
- + NotifyService
  + WorkerEmail
  + Kafka
  + Kafdrop
@@ -45,6 +44,8 @@ Người đóng góp
  + UI
 - Phân tích nghiệp vụ cho phần mềm
 - Thiết kế giao diện cho hệ thống
+- Xây dựng các service:
+ + NotifyService
 
 Lịch sử phát triển
 02/04/2022

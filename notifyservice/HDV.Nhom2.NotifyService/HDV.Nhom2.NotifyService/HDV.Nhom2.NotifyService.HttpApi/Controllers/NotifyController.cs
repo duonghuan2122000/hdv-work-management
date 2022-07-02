@@ -14,7 +14,6 @@ namespace HDV.Nhom2.NotifyService.HttpApi.Controllers
     /// <summary>
     /// Controller thông báo
     /// </summary>
-    /// CreatedBy: dbhuan 29/05/2022
     [Route("notify")]
     [ApiController]
     public class NotifyController : ControllerBase
